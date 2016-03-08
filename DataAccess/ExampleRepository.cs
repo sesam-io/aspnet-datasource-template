@@ -48,8 +48,7 @@ namespace Sesam.Templates.CustomDataSource.DataAccess
         */       
         public Entity GetEntity(string id){
             if (id == null) return null;
-            var entity = _entities.FirstOrDefault(x => x.Id == id);
-            return entity;
+            return _entities.FirstOrDefault(x => x.Id == id);
         }       
                
         /*
