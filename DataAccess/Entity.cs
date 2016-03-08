@@ -13,18 +13,20 @@ See the License for the specific language governing permissions and
 limitations under the License. */
 
 using System;
+using Newtonsoft.Json;
 
 namespace Sesam.Templates.CustomDataSource.DataAccess
 {
     /* Base class that defines the entity properties 
-       supported by the JSON Entities protocol. */   
+       supported by the JSON Entities protocol. */
     public abstract class Entity {   
         
         public Entity(string id) {
-            _id = id;
+            Id = id;
         }
              
-        public string _id {
+        [JsonProperty(PropertyName="_id")]
+        public string Id {
             private set;
             get;
         }
@@ -32,11 +34,13 @@ namespace Sesam.Templates.CustomDataSource.DataAccess
         /* Updated is only used internally by the datasource. 
            It can be any token that the datasource can use
            to order entities */        
-        public string _updated {
+        [JsonProperty(PropertyName="_updated")]
+        public string Updated {
             get;set;
         }
         
-        public bool _deleted {
+        [JsonProperty(PropertyName="_deleted")]
+        public bool Deleted {
             get;set;
         }                
     }

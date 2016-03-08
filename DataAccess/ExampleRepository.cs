@@ -35,11 +35,8 @@ namespace Sesam.Templates.CustomDataSource.DataAccess
             var entityCount = 100;
             for (var i=0;i<entityCount;i++) {
                 var id = "e-" + i;
-                var entity = new ExampleEntity(id);
-                
-                // we will use string comparison of ISO encoded date as string
-                // to determine items.
-                entity._updated = DateTime.UtcNow.ToString("o");
+                var entity = new ExampleEntity(id);                
+                entity.Updated = DateTime.UtcNow.ToString("o");
                 entity.Name = "entity number " + i;
                 _entities.Add(entity);
             }            
@@ -51,7 +48,7 @@ namespace Sesam.Templates.CustomDataSource.DataAccess
         */       
         public Entity GetEntity(string id){
             if (id == null) return null;
-            var entity = _entities.FirstOrDefault(x => x._id == id);
+            var entity = _entities.FirstOrDefault(x => x.Id == id);
             return entity;
         }       
                
@@ -61,7 +58,7 @@ namespace Sesam.Templates.CustomDataSource.DataAccess
         */
         public IEnumerable<Entity> GetEntities(string since = null){
             if (since == null) return _entities; 
-            return _entities.Where(x => String.Compare(x._updated, since) >= 0);
+            return _entities.Where(x => String.Compare(x.Updated, since) >= 0);
         }         
     }   
 }
